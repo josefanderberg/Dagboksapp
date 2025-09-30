@@ -5,6 +5,9 @@ class Program
 {
     public static void Main(string[] args)
     {
+        // Uppgradera diary.json om det behövs
+        UpgradeJson.Upgrade("diary.json");
+
         Diary diary = new Diary();
         string infoMessage = "";
 
@@ -59,9 +62,8 @@ class Program
                 {
                     case 1:
                         Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("=== Skriv ny anteckning ===");
-                        Console.ResetColor();
+                        DrawSectionBox("Skriv ny anteckning"); // Ny ruta
+                        Console.WriteLine();
                         Console.Write("Skriv din anteckning: ");
                         string note = Console.ReadLine()!;
                         if (string.IsNullOrWhiteSpace(note))
@@ -71,8 +73,56 @@ class Program
                             Console.ResetColor();
                             break;
                         }
-                        Console.Write("Skriv datum (yyyy-mm-dd): ");
-                        if (DateTime.TryParse(Console.ReadLine(), out DateTime date))
+
+                        // Nytt sätt att skriva datum
+                        string dateTemplate = "yyyy-mm-dd";
+                        string inputDate = dateTemplate;
+                        int cursorLeft = "Skriv datum: ".Length;
+                        Console.Write("Skriv datum: ");
+                        Console.Write(inputDate);
+                        int pos = 0;
+                        ConsoleKeyInfo keyInfo;
+                        Console.CursorVisible = true;
+                        while (pos < inputDate.Length)
+                        {
+                            Console.SetCursorPosition(cursorLeft + pos, Console.CursorTop);
+                            keyInfo = Console.ReadKey(true);
+                            if (char.IsDigit(keyInfo.KeyChar) && (pos == 0 || pos == 1 || pos == 2 || pos == 3 || pos == 5 || pos == 6 || pos == 8 || pos == 9))
+                            {
+                                inputDate = inputDate.Remove(pos, 1).Insert(pos, keyInfo.KeyChar.ToString());
+                                Console.SetCursorPosition(cursorLeft, Console.CursorTop);
+                                Console.Write(inputDate);
+                                pos++;
+                                // Hoppa över '-' automatiskt
+                                if (pos == 4 || pos == 7) pos++;
+                            }
+                            else if (keyInfo.Key == ConsoleKey.LeftArrow && pos > 0)
+                            {
+                                pos--;
+                                if (pos == 4 || pos == 7) pos--;
+                            }
+                            else if (keyInfo.Key == ConsoleKey.RightArrow && pos < inputDate.Length - 1)
+                            {
+                                pos++;
+                                if (pos == 4 || pos == 7) pos++;
+                            }
+                            else if (keyInfo.Key == ConsoleKey.Backspace && pos > 0)
+                            {
+                                pos--;
+                                if (pos == 4 || pos == 7) pos--;
+                                inputDate = inputDate.Remove(pos, 1).Insert(pos, dateTemplate[pos].ToString());
+                                Console.SetCursorPosition(cursorLeft, Console.CursorTop);
+                                Console.Write(inputDate);
+                            }
+                            else if (keyInfo.Key == ConsoleKey.Enter)
+                            {
+                                break;
+                            }
+                        }
+                        Console.CursorVisible = false;
+                        Console.WriteLine();
+
+                        if (DateTime.TryParse(inputDate, out DateTime date))
                         {
                             try
                             {
@@ -163,7 +213,7 @@ class Program
         }
     }
 
-    static void DrawTitleBox(string title)
+    public static void DrawTitleBox(string title)
     {
         int boxWidth = 32;
         string horizontal = "┌" + new string('─', boxWidth - 2) + "┐";
@@ -172,6 +222,21 @@ class Program
         string middle = "│" + new string(' ', pad) + title + new string(' ', boxWidth - 2 - pad - title.Length) + "│";
 
         Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine(horizontal);
+        Console.WriteLine(middle);
+        Console.WriteLine(bottom);
+        Console.ResetColor();
+    }
+
+    public static void DrawSectionBox(string title)
+    {
+        int boxWidth = 32;
+        string horizontal = "┌" + new string('─', boxWidth - 2) + "┐";
+        string bottom =    "└" + new string('─', boxWidth - 2) + "┘";
+        int pad = (boxWidth - 2 - title.Length) / 2;
+        string middle = "│" + new string(' ', pad) + title + new string(' ', boxWidth - 2 - pad - title.Length) + "│";
+
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine(horizontal);
         Console.WriteLine(middle);
         Console.WriteLine(bottom);

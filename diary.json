@@ -1,82 +1,102 @@
 [
   {
     "Date": "1993-12-12T00:00:00",
-    "Note": "ahiusdo"
+    "Note": "ahiusdo",
+    "IsStarred": false
   },
   {
     "Date": "1994-01-01T00:00:00",
-    "Note": "F\u00F6rsta dagen p\u00E5 \u00E5ret"
+    "Note": "F\u00F6rsta dagen p\u00E5 \u00E5ret",
+    "IsStarred": false
   },
   {
     "Date": "1995-02-14T00:00:00",
-    "Note": "Alla hj\u00E4rtans dag"
+    "Note": "Alla hj\u00E4rtans dag",
+    "IsStarred": false
   },
   {
     "Date": "1996-03-01T00:00:00",
-    "Note": "V\u00E5rk\u00E4nslor"
+    "Note": "V\u00E5rk\u00E4nslor",
+    "IsStarred": false
   },
   {
     "Date": "1997-04-10T00:00:00",
-    "Note": "Solig dag"
+    "Note": "Solig dag",
+    "IsStarred": false
   },
   {
     "Date": "1998-05-20T00:00:00",
-    "Note": "Skolavslutning"
+    "Note": "Skolavslutning",
+    "IsStarred": false
   },
   {
     "Date": "1999-06-06T00:00:00",
-    "Note": "Nationaldagen"
+    "Note": "Nationaldagen",
+    "IsStarred": false
   },
   {
     "Date": "2000-07-15T00:00:00",
-    "Note": "Sommarlov"
+    "Note": "Sommarlov",
+    "IsStarred": false
   },
   {
     "Date": "2001-08-23T00:00:00",
-    "Note": "Tillbaka till skolan"
+    "Note": "Tillbaka till skolan",
+    "IsStarred": false
   },
   {
     "Date": "2002-09-30T00:00:00",
-    "Note": "H\u00F6stpromenad"
+    "Note": "H\u00F6stpromenad",
+    "IsStarred": false
   },
   {
     "Date": "2003-10-31T00:00:00",
-    "Note": "Halloweenfest"
+    "Note": "Halloweenfest",
+    "IsStarred": false
   },
   {
     "Date": "2004-11-11T00:00:00",
-    "Note": "Fars dag"
+    "Note": "Fars dag",
+    "IsStarred": false
   },
   {
     "Date": "2005-12-24T00:00:00",
-    "Note": "Julafton"
+    "Note": "Julafton",
+    "IsStarred": false
   },
   {
     "Date": "2006-01-13T00:00:00",
-    "Note": "Tjugondag Knut"
+    "Note": "Tjugondag Knut",
+    "IsStarred": false
   },
   {
     "Date": "2007-02-28T00:00:00",
-    "Note": "Sportlov"
+    "Note": "Sportlov",
+    "IsStarred": false
   },
   {
     "Date": "2008-03-20T00:00:00",
-    "Note": "P\u00E5sklov"
+    "Note": "P\u00E5sklov",
+    "IsStarred": false
   },
   {
     "Date": "2009-04-30T00:00:00",
-    "Note": "Valborg"
+    "Note": "Valborg",
+    "IsStarred": false
   },
   {
     "Date": "2010-05-01T00:00:00",
-    "Note": "F\u00F6rsta maj"
+    "Note": "F\u00F6rsta maj",
+    "IsStarred": false
   },
   {
     "Date": "2011-06-21T00:00:00",
-    "Note": "Sommarsolst\u00E5ndet"
+    "Note": "Sommarsolst\u00E5ndet",
+    "IsStarred": false
   },
   {
     "Date": "2012-07-04T00:00:00",
-    "Note": "Utflykt till stranden"
+    "Note": "Utflykt till stranden",
+    "IsStarred": false
   }
 ]

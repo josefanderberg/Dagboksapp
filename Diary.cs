@@ -50,4 +50,17 @@ class Diary
             throw new InvalidOperationException("Ingen anteckning hittades för detta datum.");
         }
     }
+
+    public void ToggleStar(DateTime date)
+    {
+        var entry = entries.FirstOrDefault(e => e.Date.Date == date.Date);
+        if (entry != null)
+        {
+            entry.IsStarred = !entry.IsStarred;
+        }
+        else
+        {
+            throw new InvalidOperationException("Ingen anteckning hittades för detta datum.");
+        }
+    }
 }

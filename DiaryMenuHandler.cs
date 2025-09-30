@@ -37,27 +37,25 @@ class DiaryMenuHandler
                 do
                 {
                     Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("=== Lista och hantera anteckningar ===");
-                    Console.ResetColor();
+                    Program.DrawSectionBox("Lista och hantera anteckningar"); // Ny ruta
                     Console.WriteLine("Navigera med piltangenterna. Tryck Enter för att välja.\n");
                     for (int i = 0; i < allEntries.Count; i++)
                     {
+                        string starPrefix = allEntries[i].IsStarred ? "★ " : "";
+                        string starSuffix = allEntries[i].IsStarred ? " *" : "";
                         if (i == selected)
                         {
                             Console.BackgroundColor = ConsoleColor.White;
                             Console.ForegroundColor = ConsoleColor.Black;
-                            // Visa markerad rad: datum + anteckning i svart på vitt
-                            Console.WriteLine($"{allEntries[i].Date:yyyy-MM-dd}: {allEntries[i].Note}");
+                            Console.WriteLine($"{allEntries[i].Date:yyyy-MM-dd}: {starPrefix}{allEntries[i].Note}{starSuffix}");
                             Console.ResetColor();
                         }
                         else
                         {
-                            // Datum i grått, anteckning i standardfärg
                             Console.ForegroundColor = ConsoleColor.DarkGray;
                             Console.Write($"{allEntries[i].Date:yyyy-MM-dd}: ");
                             Console.ResetColor();
-                            Console.WriteLine(allEntries[i].Note);
+                            Console.WriteLine($"{starPrefix}{allEntries[i].Note}{starSuffix}");
                         }
                     }
                     // Sök efter anteckning
@@ -129,14 +127,18 @@ class DiaryMenuHandler
     public static void HandleEntryAction(Diary diary, DiaryEntry entry)
     {
         Console.CursorVisible = false;
-        string[] actions = { "Ta bort anteckningen", "Uppdatera anteckningen" };
+        string[] actions = {
+            entry.IsStarred ? "Avmarkera stjärna" : "Stjärnmarkera", // Nytt val
+            "Ta bort anteckningen",
+            "Uppdatera anteckningen"
+        };
         int selected = 0;
         try
         {
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("=== Vald anteckning ===");
+                Program.DrawSectionBox("Vald anteckning"); // Ny ruta
 
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(entry.Note);
@@ -145,7 +147,7 @@ class DiaryMenuHandler
                 Console.WriteLine(entry.Date.ToString("yyyy-MM-dd"));
                 Console.ResetColor();
                 Console.WriteLine();
-                Console.WriteLine("- Vad vill du göra?");
+                Console.WriteLine("Vad vill du göra?");
                 Console.WriteLine();
 
                 for (int i = 0; i < actions.Length; i++)
@@ -181,7 +183,11 @@ class DiaryMenuHandler
                 {
                     switch (selected)
                     {
-                        case 0: // Ta bort
+                        case 0: // Stjärnmarkera/avmarkera
+                            diary.ToggleStar(entry.Date);
+                            entry.IsStarred = !entry.IsStarred;
+                            return;
+                        case 1: // Ta bort
                             diary.RemoveEntry(entry.Date);
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("Anteckningen har tagits bort.");
@@ -189,7 +195,7 @@ class DiaryMenuHandler
                             Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
                             Console.ReadKey();
                             return;
-                        case 1: // Uppdatera
+                        case 2: // Uppdatera
                             Console.Write("Skriv den nya anteckningen: ");
                             string updatedNote = Console.ReadLine()!;
                             if (string.IsNullOrWhiteSpace(updatedNote))
@@ -211,7 +217,7 @@ class DiaryMenuHandler
                                 return;
                             }
                             break;
-                        case 2: // Tillbaka
+                        case 3: // Tillbaka
                             return;
                     }
                 }
