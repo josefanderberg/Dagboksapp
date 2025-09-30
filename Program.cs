@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text.Json;
 
 class Program
 {
@@ -33,9 +34,16 @@ class Program
                         Console.WriteLine("Skriv datum (yyyy-mm-dd):");
                         if (DateTime.TryParse(Console.ReadLine(), out DateTime date))
                         {
-                            DiaryEntry entry = new DiaryEntry(date, note);
-                            diary.AddEntry(entry);
-                            Console.WriteLine("Anteckning tillagd!");
+                            try
+                            {
+                                DiaryEntry entry = new DiaryEntry(date, note);
+                                diary.AddEntry(entry);
+                                Console.WriteLine("Anteckning tillagd!");
+                            }
+                            catch (InvalidOperationException ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
                         }
                         else
                         {
@@ -80,12 +88,33 @@ class Program
                         }
                         break;
                     case 4:
-
+                        try
+                        {
+                            string filePath = "diary.json";
+                            diary.SaveToFile(filePath);
+                            Console.WriteLine($"Anteckningar sparade till {filePath}.");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Ett fel uppstod vid sparning: {ex.Message}");
+                        }
                         break;
                     case 5:
-
+                        try
+                        {
+                            string filePath = "diary.json";
+                            diary.LoadFromFile(filePath);
+                            Console.WriteLine($"Anteckningar lästa från {filePath}.");
+                        }
+                        catch (FileNotFoundException)
+                        {
+                            Console.WriteLine("Filen hittades inte. Skapa och spara anteckningar först.");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Ett fel uppstod vid läsning: {ex.Message}");
+                        }
                         break;
-
                     case 6:
 
                         break;
