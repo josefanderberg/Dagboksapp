@@ -1,9 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 class Program
 {
-    public void Main(string[] args)
+    public static void Main(string[] args)
     {
         Console.WriteLine("=== DAGBOKSAPP ===");
         Console.WriteLine("1. Skriv ny anteckning");
@@ -20,7 +19,25 @@ class Program
                 switch (choice)
                 {
                     case 1:
-
+                        Console.WriteLine("Skriv din anteckning:");
+                        string note = Console.ReadLine()!;
+                        if (string.IsNullOrWhiteSpace(note))
+                        {
+                            Console.WriteLine("Anteckningen kan inte vara tom.");
+                            break;
+                        }
+                        Console.WriteLine("Skriv datum (yyyy-mm-dd):");
+                        if (DateTime.TryParse(Console.ReadLine(), out DateTime date))
+                        {
+                            DiaryEntry entry = new DiaryEntry(date, note);
+                            Diary diary = new Diary();
+                            diary.AddEntry(entry);
+                            Console.WriteLine("Anteckning tillagd!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltigt datumformat.");
+                        }
                         break;
                     case 2:
 
@@ -43,4 +60,33 @@ class Program
                 }
         }
     }
+}
+
+class DiaryEntry
+{
+    public DateTime Date { get; set; }
+    public string Note { get; set; }
+
+    public DiaryEntry(DateTime date, string note)
+    {
+        Date = date;
+        Note = note;
+    }
+    public override string ToString()
+    {
+        return $"{Date.ToShortDateString()}: {Note}";
+    }
+}
+
+class Diary
+{
+    private List<DiaryEntry> entries = new List<DiaryEntry>();
+
+    public void AddEntry(DiaryEntry entry)
+    {
+        entries.Add(entry);
+    }
+
+    
+
 }
