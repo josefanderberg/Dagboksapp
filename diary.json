@@ -1,10 +1,82 @@
 [
   {
-    "Date": "2000-01-01T00:00:00",
-    "Note": "Tjaaa"
+    "Date": "1993-12-12T00:00:00",
+    "Note": "ahiusdo"
   },
   {
-    "Date": "2001-01-01T00:00:00",
-    "Note": "HEjdu"
+    "Date": "1994-01-01T00:00:00",
+    "Note": "F\u00F6rsta dagen p\u00E5 \u00E5ret"
+  },
+  {
+    "Date": "1995-02-14T00:00:00",
+    "Note": "Alla hj\u00E4rtans dag"
+  },
+  {
+    "Date": "1996-03-01T00:00:00",
+    "Note": "V\u00E5rk\u00E4nslor"
+  },
+  {
+    "Date": "1997-04-10T00:00:00",
+    "Note": "Solig dag"
+  },
+  {
+    "Date": "1998-05-20T00:00:00",
+    "Note": "Skolavslutning"
+  },
+  {
+    "Date": "1999-06-06T00:00:00",
+    "Note": "Nationaldagen"
+  },
+  {
+    "Date": "2000-07-15T00:00:00",
+    "Note": "Sommarlov"
+  },
+  {
+    "Date": "2001-08-23T00:00:00",
+    "Note": "Tillbaka till skolan"
+  },
+  {
+    "Date": "2002-09-30T00:00:00",
+    "Note": "H\u00F6stpromenad"
+  },
+  {
+    "Date": "2003-10-31T00:00:00",
+    "Note": "Halloweenfest"
+  },
+  {
+    "Date": "2004-11-11T00:00:00",
+    "Note": "Fars dag"
+  },
+  {
+    "Date": "2005-12-24T00:00:00",
+    "Note": "Julafton"
+  },
+  {
+    "Date": "2006-01-13T00:00:00",
+    "Note": "Tjugondag Knut"
+  },
+  {
+    "Date": "2007-02-28T00:00:00",
+    "Note": "Sportlov"
+  },
+  {
+    "Date": "2008-03-20T00:00:00",
+    "Note": "P\u00E5sklov"
+  },
+  {
+    "Date": "2009-04-30T00:00:00",
+    "Note": "Valborg"
+  },
+  {
+    "Date": "2010-05-01T00:00:00",
+    "Note": "F\u00F6rsta maj"
+  },
+  {
+    "Date": "2011-06-21T00:00:00",
+    "Note": "Sommarsolst\u00E5ndet"
+  },
+  {
+    "Date": "2012-07-04T00:00:00",
+    "Note": "Utflykt till stranden"
   }
 ]
