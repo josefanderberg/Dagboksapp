@@ -32,4 +32,22 @@ class Diary
         string json = File.ReadAllText(filePath);
         entries = JsonSerializer.Deserialize<List<DiaryEntry>>(json) ?? new List<DiaryEntry>();
     }
+
+    public void RemoveEntry(DateTime date)
+    {
+        entries.RemoveAll(e => e.Date.Date == date.Date);
+    }
+
+    public void UpdateEntry(DateTime date, string newNote)
+    {
+        var entry = entries.FirstOrDefault(e => e.Date.Date == date.Date);
+        if (entry != null)
+        {
+            entry.Note = newNote;
+        }
+        else
+        {
+            throw new InvalidOperationException("Ingen anteckning hittades för detta datum.");
+        }
+    }
 }

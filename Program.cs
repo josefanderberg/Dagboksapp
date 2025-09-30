@@ -14,9 +14,11 @@ class Program
             Console.WriteLine("1. Skriv ny anteckning");
             Console.WriteLine("2. Lista alla anteckningar");
             Console.WriteLine("3. Sök anteckning på datum");
-            Console.WriteLine("4. Spara till fil");
-            Console.WriteLine("5. Läs från fil");
-            Console.WriteLine("6. Avsluta");
+            Console.WriteLine("4. Ta bort eller uppdatera en anteckning");
+            Console.WriteLine("5. Spara till fil");
+            Console.WriteLine("6. Läs från fil");
+            Console.WriteLine("7. Avsluta");
+
 
 
             if (int.TryParse(Console.ReadLine(), out int choice))
@@ -88,6 +90,60 @@ class Program
                         }
                         break;
                     case 4:
+                        Console.WriteLine("Ange datum för anteckningen du vill ta bort eller uppdatera (yyyy-mm-dd):");
+                        if (DateTime.TryParse(Console.ReadLine(), out DateTime targetDate))
+                        {
+                            List<DiaryEntry> entriesByDate = diary.GetEntriesByDate(targetDate);
+                            if (entriesByDate.Count == 0)
+                            {
+                                Console.WriteLine("Ingen anteckning hittades för detta datum.");
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                DiaryEntry selectedEntry = entriesByDate.First();
+                                Console.WriteLine($"Vald anteckning: {selectedEntry}");
+                                Console.WriteLine("Vad vill du göra?");
+                                Console.WriteLine("1. Ta bort anteckningen");
+                                Console.WriteLine("2. Uppdatera anteckningen");
+                                if (int.TryParse(Console.ReadLine(), out int actionChoice))
+                                {
+                                    switch (actionChoice)
+                                    {
+                                        case 1:
+                                            diary.RemoveEntry(targetDate);
+                                            Console.WriteLine("Anteckningen har tagits bort.");
+                                            break;
+                                        case 2:
+                                            Console.WriteLine("Skriv den nya anteckningen:");
+                                            string updatedNote = Console.ReadLine()!;
+                                            if (string.IsNullOrWhiteSpace(updatedNote))
+                                            {
+                                                Console.WriteLine("Anteckningen kan inte vara tom.");
+                                            }
+                                            else
+                                            {
+                                                diary.UpdateEntry(targetDate, updatedNote);
+                                                Console.WriteLine("Anteckningen har uppdaterats.");
+                                            }
+                                            break;
+                                        default:
+                                            Console.WriteLine("Ogiltigt val.");
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Ogiltigt val.");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltigt datumformat.");
+                        }
+                        break;
+                    case 5:
                         try
                         {
                             string filePath = "diary.json";
@@ -99,7 +155,7 @@ class Program
                             Console.WriteLine($"Ett fel uppstod vid sparning: {ex.Message}");
                         }
                         break;
-                    case 5:
+                    case 6:
                         try
                         {
                             string filePath = "diary.json";
@@ -115,9 +171,9 @@ class Program
                             Console.WriteLine($"Ett fel uppstod vid läsning: {ex.Message}");
                         }
                         break;
-                    case 6:
-
-                        break;
+                    
+                    case 7:
+                        return;
                     default:
                         break;
                 }
