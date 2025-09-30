@@ -5,8 +5,6 @@ class Program
 {
     public static void Main(string[] args)
     {
-        // Uppgradera diary.json om det behövs
-        UpgradeJson.Upgrade("diary.json");
 
         Diary diary = new Diary();
         string infoMessage = "";
