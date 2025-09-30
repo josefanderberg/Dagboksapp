@@ -8,9 +8,9 @@ class DiaryEntry
         Date = date;
         Note = note;
     }
+
     public override string ToString()
     {
-        return $"{Date.ToShortDateString()}: {Note}";
+        return $"{Date:yyyy-MM-dd}: {Note}";
     }
 }
-
