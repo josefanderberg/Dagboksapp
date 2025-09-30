@@ -58,7 +58,26 @@ class Program
                         }
                         break;
                     case 3:
-
+                        Console.WriteLine("Ange datum att söka efter (yyyy-mm-dd):");
+                        if (DateTime.TryParse(Console.ReadLine(), out DateTime searchDate))
+                        {
+                            List<DiaryEntry> entriesByDate = diary.GetEntriesByDate(searchDate);
+                            if (entriesByDate.Count == 0)
+                            {
+                                Console.WriteLine("Inga anteckningar hittades för detta datum.");
+                            }
+                            else
+                            {
+                                foreach (var entry in entriesByDate)
+                                {
+                                    Console.WriteLine(entry);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltigt datumformat.");
+                        }
                         break;
                     case 4:
 
@@ -83,37 +102,4 @@ class Program
             Console.Clear();
         }
     }
-}
-
-class DiaryEntry
-{
-    public DateTime Date { get; set; }
-    public string Note { get; set; }
-
-    public DiaryEntry(DateTime date, string note)
-    {
-        Date = date;
-        Note = note;
-    }
-    public override string ToString()
-    {
-        return $"{Date.ToShortDateString()}: {Note}";
-    }
-}
-
-class Diary
-{
-    private List<DiaryEntry> entries = new List<DiaryEntry>();
-
-    public void AddEntry(DiaryEntry entry)
-    {
-        entries.Add(entry);
-    }
-    public List<DiaryEntry> GetAllEntries()
-    {
-        return entries;
-    }
-
-
-
 }
