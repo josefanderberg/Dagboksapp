@@ -13,7 +13,7 @@ class DiaryEntry
 
     public override string ToString()
     {
-        string star = IsStarred ? "★ " : "";
+        string star = IsStarred ? "* " : "";
         return $"{Date:yyyy-MM-dd}: {star}{Note}";
     }
 }

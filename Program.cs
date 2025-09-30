@@ -234,7 +234,7 @@ class Program
         int pad = (boxWidth - 2 - title.Length) / 2;
         string middle = "│" + new string(' ', pad) + title + new string(' ', boxWidth - 2 - pad - title.Length) + "│";
 
-        Console.ForegroundColor = ConsoleColor.Green;
+        Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine(horizontal);
         Console.WriteLine(middle);
         Console.WriteLine(bottom);

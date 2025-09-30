@@ -32,12 +32,12 @@
   {
     "Date": "1999-06-06T00:00:00",
     "Note": "Nationaldagen",
-    "IsStarred": false
+    "IsStarred": true
   },
   {
     "Date": "2000-07-15T00:00:00",
     "Note": "Sommarlov",
-    "IsStarred": false
+    "IsStarred": true
   },
   {
     "Date": "2001-08-23T00:00:00",
@@ -80,13 +80,8 @@
     "IsStarred": false
   },
   {
-    "Date": "2009-04-30T00:00:00",
-    "Note": "Valborg",
-    "IsStarred": false
-  },
-  {
     "Date": "2010-05-01T00:00:00",
-    "Note": "F\u00F6rsta maj",
+    "Note": "JUUUUU",
     "IsStarred": false
   },
   {
@@ -98,5 +93,10 @@
     "Date": "2012-07-04T00:00:00",
     "Note": "Utflykt till stranden",
     "IsStarred": false
+  },
+  {
+    "Date": "9003-03-03T00:00:00",
+    "Note": "*^\u00C4Q\u00D6^\u0022\u0022^",
+    "IsStarred": true
   }
 ]

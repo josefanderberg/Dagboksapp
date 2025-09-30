@@ -37,17 +37,20 @@ class DiaryMenuHandler
                 do
                 {
                     Console.Clear();
-                    Program.DrawSectionBox("Lista och hantera anteckningar"); // Ny ruta
+                    Program.DrawSectionBox("Anteckningar"); // Ny ruta
                     Console.WriteLine("Navigera med piltangenterna. Tryck Enter för att välja.\n");
                     for (int i = 0; i < allEntries.Count; i++)
                     {
-                        string starPrefix = allEntries[i].IsStarred ? "★ " : "";
-                        string starSuffix = allEntries[i].IsStarred ? " *" : "";
+                        string star = allEntries[i].IsStarred ? "*" : "";
+                        string noteDisplay = allEntries[i].IsStarred
+                            ? $"{allEntries[i].Note} {star}"
+                            : allEntries[i].Note;
+
                         if (i == selected)
                         {
                             Console.BackgroundColor = ConsoleColor.White;
                             Console.ForegroundColor = ConsoleColor.Black;
-                            Console.WriteLine($"{allEntries[i].Date:yyyy-MM-dd}: {starPrefix}{allEntries[i].Note}{starSuffix}");
+                            Console.WriteLine($"{allEntries[i].Date:yyyy-MM-dd}: {noteDisplay}");
                             Console.ResetColor();
                         }
                         else
@@ -55,7 +58,7 @@ class DiaryMenuHandler
                             Console.ForegroundColor = ConsoleColor.DarkGray;
                             Console.Write($"{allEntries[i].Date:yyyy-MM-dd}: ");
                             Console.ResetColor();
-                            Console.WriteLine($"{starPrefix}{allEntries[i].Note}{starSuffix}");
+                            Console.WriteLine(noteDisplay);
                         }
                     }
                     // Sök efter anteckning
@@ -127,20 +130,22 @@ class DiaryMenuHandler
     public static void HandleEntryAction(Diary diary, DiaryEntry entry)
     {
         Console.CursorVisible = false;
-        string[] actions = {
-            entry.IsStarred ? "Avmarkera stjärna" : "Stjärnmarkera", // Nytt val
-            "Ta bort anteckningen",
-            "Uppdatera anteckningen"
-        };
         int selected = 0;
         try
         {
             while (true)
             {
+                // Flytta hit så att texten uppdateras efter stjärnmarkering
+                string[] actions = {
+                    entry.IsStarred ? "Avmarkera stjärna" : "Stjärnmarkera",
+                    "Ta bort anteckningen",
+                    "Uppdatera anteckningen"
+                };
+
                 Console.Clear();
                 Program.DrawSectionBox("Vald anteckning"); // Ny ruta
-
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine(entry.Note);
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -184,9 +189,19 @@ class DiaryMenuHandler
                     switch (selected)
                     {
                         case 0: // Stjärnmarkera/avmarkera
-                            diary.ToggleStar(entry.Date);
-                            entry.IsStarred = !entry.IsStarred;
-                            return;
+                            try
+                            {
+                                diary.ToggleStar(entry.Date);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Fel vid stjärnmarkering: " + ex.Message);
+                                Console.ResetColor();
+                                Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+                                Console.ReadKey();
+                            }
+                            break;
                         case 1: // Ta bort
                             diary.RemoveEntry(entry.Date);
                             Console.ForegroundColor = ConsoleColor.Green;
