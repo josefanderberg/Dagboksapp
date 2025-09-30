@@ -4,16 +4,20 @@ class Program
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("=== DAGBOKSAPP ===");
-        Console.WriteLine("1. Skriv ny anteckning");
-        Console.WriteLine("2. Lista alla anteckningar");
-        Console.WriteLine("3. Sök anteckning på datum");
-        Console.WriteLine("4. Spara till fil");
-        Console.WriteLine("5. Läs från fil");
-        Console.WriteLine("6. Avsluta");
+
+        Diary diary = new Diary();
 
         while (true)
         {
+            Console.WriteLine("=== DAGBOKSAPP ===");
+            Console.WriteLine("1. Skriv ny anteckning");
+            Console.WriteLine("2. Lista alla anteckningar");
+            Console.WriteLine("3. Sök anteckning på datum");
+            Console.WriteLine("4. Spara till fil");
+            Console.WriteLine("5. Läs från fil");
+            Console.WriteLine("6. Avsluta");
+
+
             if (int.TryParse(Console.ReadLine(), out int choice))
 
                 switch (choice)
@@ -30,7 +34,6 @@ class Program
                         if (DateTime.TryParse(Console.ReadLine(), out DateTime date))
                         {
                             DiaryEntry entry = new DiaryEntry(date, note);
-                            Diary diary = new Diary();
                             diary.AddEntry(entry);
                             Console.WriteLine("Anteckning tillagd!");
                         }
@@ -40,7 +43,19 @@ class Program
                         }
                         break;
                     case 2:
-
+                        // List all entries
+                        List<DiaryEntry> allEntries = diary.GetAllEntries();
+                        if (allEntries.Count == 0)
+                        {
+                            Console.WriteLine("Inga anteckningar hittades.");
+                        }
+                        else
+                        {
+                            foreach (var entry in allEntries)
+                            {
+                                Console.WriteLine(entry);
+                            }
+                        }
                         break;
                     case 3:
 
@@ -58,6 +73,14 @@ class Program
                     default:
                         break;
                 }
+            else
+            {
+                Console.WriteLine("Ogiltigt val, försök igen.");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
@@ -86,7 +109,11 @@ class Diary
     {
         entries.Add(entry);
     }
+    public List<DiaryEntry> GetAllEntries()
+    {
+        return entries;
+    }
 
-    
+
 
 }
