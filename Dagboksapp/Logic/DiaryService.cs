@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-class Diary
+class DiaryService
 {
     private List<DiaryEntry> entries = new List<DiaryEntry>();
 

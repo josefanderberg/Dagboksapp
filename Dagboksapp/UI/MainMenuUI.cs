@@ -4,13 +4,13 @@ class MainMenuUI
 {
     private readonly EntriesMenuUI entriesMenu;
     private readonly AddEntryUI addEntryUI;
-    private readonly Diary diary;
+    private readonly DiaryService diaryService;
 
-    public MainMenuUI(EntriesMenuUI entriesMenu, AddEntryUI addEntryUI, Diary diary)
+    public MainMenuUI(EntriesMenuUI entriesMenu, AddEntryUI addEntryUI, DiaryService diaryService)
     {
         this.entriesMenu = entriesMenu;
         this.addEntryUI = addEntryUI;
-        this.diary = diary;
+        this.diaryService = diaryService;
     }
 
     public void Show(string infoMessage = "")
@@ -51,12 +51,14 @@ class MainMenuUI
                     case 2:
                         entriesMenu.Show();
                         infoMessage = "";
+                        skipPause = true;
+
                         break;
                     case 3:
                         try
                         {
                             string filePath = "diary.json";
-                            diary.LoadFromFile(filePath);
+                            diaryService.LoadFromFile(filePath);
                             infoMessage = $"Anteckningar lästa från {filePath}.";
                         }
                         catch (FileNotFoundException)
@@ -65,6 +67,7 @@ class MainMenuUI
                         }
                         catch (Exception ex)
                         {
+                            Logger.LogError(ex);
                             infoMessage = $"Ett fel uppstod vid läsning: {ex.Message}";
                         }
                         skipPause = true;
@@ -73,11 +76,12 @@ class MainMenuUI
                         try
                         {
                             string filePath = "diary.json";
-                            diary.SaveToFile(filePath);
+                            diaryService.SaveToFile(filePath);
                             infoMessage = $"Anteckningar sparade till {filePath}.";
                         }
                         catch (Exception ex)
                         {
+                            Logger.LogError(ex);
                             infoMessage = $"Ett fel uppstod vid sparning: {ex.Message}";
                         }
                         skipPause = true;

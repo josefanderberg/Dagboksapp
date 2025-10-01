@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 class DiaryMenuHandler
 {
-    private readonly Diary diary;
+    private readonly DiaryService diaryService;
 
-    public DiaryMenuHandler(Diary diary)
+    public DiaryMenuHandler(DiaryService diaryService)
     {
-        this.diary = diary;
+        this.diaryService = diaryService;
     }
 
     public List<DiaryEntry> GetFilteredEntries(string searchTerm)
     {
         if (string.IsNullOrWhiteSpace(searchTerm))
-            return diary.GetAllEntries().OrderByDescending(e => e.Date).ToList();
-        return diary.GetAllEntries()
+            return diaryService.GetAllEntries().OrderByDescending(e => e.Date).ToList();
+        return diaryService.GetAllEntries()
             .Where(e =>
                 e.Note.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                 e.Date.ToString("yyyy-MM-dd").Contains(searchTerm))
@@ -25,21 +25,21 @@ class DiaryMenuHandler
 
     public void ToggleStar(DiaryEntry entry)
     {
-        diary.ToggleStar(entry.Date);
+        diaryService.ToggleStar(entry.Date);
     }
 
     public void RemoveEntry(DiaryEntry entry)
     {
-        diary.RemoveEntry(entry.Date);
+        diaryService.RemoveEntry(entry.Date);
     }
 
     public void UpdateEntry(DiaryEntry entry, string newNote)
     {
-        diary.UpdateEntry(entry.Date, newNote);
+        diaryService.UpdateEntry(entry.Date, newNote);
     }
 
     public void AddEntry(DiaryEntry entry)
     {
-        diary.AddEntry(entry);
+        diaryService.AddEntry(entry);
     }
 }

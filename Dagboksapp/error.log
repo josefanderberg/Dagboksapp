@@ -1,0 +1,5 @@
+10/1/2025 4:57:22 PM: System.FormatException: Ogiltigt datumformat: 3521-24-12
+10/1/2025 5:08:32 PM: System.FormatException: Ogiltigt datumformat: 3030-20-02
+10/1/2025 5:12:22 PM: System.FormatException: Ogiltigt datumformat: 2028-23-23
+10/1/2025 5:23:02 PM: System.FormatException: Ogiltigt datumformat: 2342-34-23
+10/1/2025 5:23:08 PM: System.FormatException: Ogiltigt datumformat: 1232-33-22

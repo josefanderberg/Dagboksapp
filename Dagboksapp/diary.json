@@ -1,0 +1,37 @@
+[
+  {
+    "Date": "2023-07-15T00:00:00",
+    "Note": "Promenerade i parken och såg en vacker solnedgång.",
+    "IsStarred": true
+  },
+  {
+    "Date": "2023-09-03T00:00:00",
+    "Note": "Började läsa en ny bok om personlig utveckling.",
+    "IsStarred": false
+  },
+  {
+    "Date": "2023-11-21T00:00:00",
+    "Note": "Fikade med en gammal vän på stan.",
+    "IsStarred": false
+  },
+  {
+    "Date": "2024-01-05T00:00:00",
+    "Note": "Nytt år! Skrivit upp mina mål för 2024.",
+    "IsStarred": true
+  },
+  {
+    "Date": "2024-03-12T00:00:00",
+    "Note": "Tränade på gymmet och kände mig stark.",
+    "IsStarred": false
+  },
+  {
+    "Date": "2024-05-01T00:00:00",
+    "Note": "Firade Valborg med familjen.",
+    "IsStarred": true
+  },
+  {
+    "Date": "2024-06-05T00:00:00",
+    "Note": "Avslutade ett stort projekt på jobbet.",
+    "IsStarred": false
+  }
+]

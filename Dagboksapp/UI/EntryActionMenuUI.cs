@@ -70,23 +70,22 @@ class EntryActionMenuUI
                         try
                         {
                             menuHandler.ToggleStar(entry);
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine(entry.IsStarred ? "Anteckningen är nu stjärnmarkerad." : "Stjärnmarkeringen är borttagen.");
+                            Console.ResetColor();
                         }
                         catch (Exception ex)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Fel vid stjärnmarkering: " + ex.Message);
                             Console.ResetColor();
-                            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-                            Console.ReadKey();
                         }
-                        break;
+                        return; // Gå tillbaka direkt efter toggling
                     case 1: // Ta bort
                         menuHandler.RemoveEntry(entry);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Anteckningen har tagits bort.");
                         Console.ResetColor();
-                        Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-                        Console.ReadKey();
                         return;
                     case 2: // Uppdatera
                         Console.Write("Skriv den nya anteckningen: ");
@@ -96,8 +95,6 @@ class EntryActionMenuUI
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Anteckningen kan inte vara tom.");
                             Console.ResetColor();
-                            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-                            Console.ReadKey();
                         }
                         else
                         {
@@ -105,8 +102,6 @@ class EntryActionMenuUI
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("Anteckningen har uppdaterats.");
                             Console.ResetColor();
-                            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-                            Console.ReadKey();
                             return;
                         }
                         break;

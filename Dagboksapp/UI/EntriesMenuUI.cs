@@ -24,8 +24,6 @@ class EntriesMenuUI
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Inga anteckningar hittades.");
                 Console.ResetColor();
-                Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-                Console.ReadKey();
                 return;
             }
 

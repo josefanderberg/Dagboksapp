@@ -21,8 +21,6 @@ class AddEntryUI
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Anteckningen kan inte vara tom.");
             Console.ResetColor();
-            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-            Console.ReadKey();
             return;
         }
 
@@ -74,6 +72,13 @@ class AddEntryUI
 
         if (DateTime.TryParse(inputDate, out DateTime date))
         {
+            if (date > DateTime.Today)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Ogiltigt datum: Du kan inte lägga till en anteckning i framtiden.");
+                Console.ResetColor();
+                return;
+            }
             try
             {
                 menuHandler.AddEntry(new DiaryEntry(date, note));
@@ -90,11 +95,11 @@ class AddEntryUI
         }
         else
         {
+            var ex = new FormatException("Ogiltigt datumformat: " + inputDate);
+            Logger.LogError(ex);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Ogiltigt datumformat.");
             Console.ResetColor();
         }
-        Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-        Console.ReadKey();
     }
 }
