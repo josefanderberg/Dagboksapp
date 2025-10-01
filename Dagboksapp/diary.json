@@ -1,27 +1,27 @@
 [
   {
     "Date": "2023-07-15T00:00:00",
-    "Note": "Promenerade i parken och såg en vacker solnedgång.",
+    "Note": "Promenerade i parken och s\u00E5g en vacker solnedg\u00E5ng.",
     "IsStarred": true
   },
   {
     "Date": "2023-09-03T00:00:00",
-    "Note": "Började läsa en ny bok om personlig utveckling.",
+    "Note": "B\u00F6rjade l\u00E4sa en ny bok om personlig utveckling.",
     "IsStarred": false
   },
   {
     "Date": "2023-11-21T00:00:00",
-    "Note": "Fikade med en gammal vän på stan.",
+    "Note": "Fikade med en gammal v\u00E4n p\u00E5 stan.",
     "IsStarred": false
   },
   {
     "Date": "2024-01-05T00:00:00",
-    "Note": "Nytt år! Skrivit upp mina mål för 2024.",
+    "Note": "Nytt \u00E5r! Skrivit upp mina m\u00E5l f\u00F6r 2024.",
     "IsStarred": true
   },
   {
     "Date": "2024-03-12T00:00:00",
-    "Note": "Tränade på gymmet och kände mig stark.",
+    "Note": "Tr\u00E4nade p\u00E5 gymmet och k\u00E4nde mig stark.",
     "IsStarred": false
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "Date": "2024-06-05T00:00:00",
-    "Note": "Avslutade ett stort projekt på jobbet.",
+    "Note": "Avslutade ett stort projekt p\u00E5 jobbet.",
     "IsStarred": false
   }
 ]

@@ -91,7 +91,6 @@ Vad vill du göra?
     diary.json
     error.log
     /Data/
-      Diary.cs
       DiaryEntry.cs
     /Logic/
       DiaryMenuHandler.cs
