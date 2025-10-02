@@ -21,9 +21,15 @@ class EntriesMenuUI
             if (entries.Count == 0)
             {
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Inga anteckningar hittades.");
                 Console.ResetColor();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
+                Console.ResetColor();
+                Console.ReadKey();
                 return;
             }
 
